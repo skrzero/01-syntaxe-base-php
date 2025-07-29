@@ -1,6 +1,6 @@
 <?php
 // TODO: Inclure le header
-
+include 'header.php';
 
 // Initialiser les variables
 $prenom = $nom = $age = $email = '';
@@ -8,30 +8,30 @@ $errors = [];
 $user = null;
 
 // TODO: Récupérer les données POST si le formulaire est soumis
-if () {
+if ($_POST) {
     // TODO: Sécuriser la récupération des données (trim, htmlspecialchars si besoin)
     $prenom = trim($_POST['prenom'] ?? '');
-    $nom = 
-    $age = 
-    $email = 
+    $nom = trim($_POST['nom'] ?? '');
+    $age = trim($_POST['age'] ?? '');
+    $email = trim($_POST['email'] ?? '');
 
     // TODO: Valider prénom (non vide)
-    if () {
+    if ($prenom === '') {
         $errors[] = "Le prénom est obligatoire.";
     }
 
     // TODO: Valider nom (non vide)
-    if () {
+    if ($nom === '') {
         $errors[] = "Le nom est obligatoire.";
     }
 
     // TODO: Valider âge (entier >= 18)
-    if () {
+    if ($age > 18) {
         $errors[] = "L'âge doit être un nombre entier supérieur ou égal à 18.";
     }
 
     // TODO: Valider email (utiliser la fonction isValidEmail)
-    if () {
+    if (isValidEmail($email) === false) {
         $errors[] = "L'adresse email n'est pas valide.";
     }
 
@@ -49,7 +49,7 @@ function isValidEmail($email)
 }
 
 // TODO: Inclure le formulaire (il utilise les variables $prenom, $nom, $age, $email pour pré-remplissage)
-
+include ('includes/formulaire.php');
 
 // Affichage des erreurs
 if (!empty($errors)) {
@@ -68,4 +68,5 @@ if ($user !== null) {
 }
 
 // TODO: Inclure le footer
-
+include 'footer.php';
+?>
